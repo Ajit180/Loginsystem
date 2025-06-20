@@ -1,16 +1,11 @@
-module.exports ={
-    HOST :'localhost',
-    USER:'root',
-    PASSWORD:'12345',
-    DB:'node_sequlize_api_db',
-    dialect:'mysql',
+const mysql =require('mysql2/promise');
 
 
-    pool:{
-        max:5,
-        min:0,
-        acquire:3000,
-        idle:10000
-    }
+const mySqlpool = mysql.createPool({
+    host:"localhost",
+    user:"root",
+    password:"12345",
+    database:"user"
+})
 
-}
+module.exports = mySqlpool;
