@@ -1,0 +1,82 @@
+/* Login container - same as registration form styling */
+.login-container {
+  margin: 40px auto;              
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;              
+}
+
+/* Login Heading */
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form input group */
+.form-data {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-data label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #444;
+}
+
+.form-data input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.form-data input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Login button styling */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+
+.account-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+}
+
+.account-text .register-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.account-text .register-link:hover {
+  text-decoration: underline;
+}
+

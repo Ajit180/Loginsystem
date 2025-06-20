@@ -1,0 +1,30 @@
+/* Make the <a> look like buttons */
+
+
+.nav-buttons {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.nav-buttons li {
+  margin: 0;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: #0056b3;
+}
