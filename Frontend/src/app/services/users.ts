@@ -14,4 +14,10 @@ export class Users {
   registerUser(data:any): Observable<any>{
        return this.http.post(`${this.baseurl}/register`,data)
   }
+
+  loginUser(data: any): Observable<any> {
+  return this.http.post(`${this.baseurl}/login`, data);
+}
+
+
 }
