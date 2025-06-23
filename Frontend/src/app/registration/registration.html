@@ -1,12 +1,16 @@
 <div class="form-container">
   <h1>User Registration</h1>
-  <form>
+  
+  <!-- Add (ngSubmit) and reference to form -->
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
     <div class="form-group">
       <label for="name">Name</label>
       <input
         type="text"
         name="name"
         id="name"
+        required
+        [(ngModel)]="formData.name"
         placeholder="Enter your full name"
       />
     </div>
@@ -17,6 +21,8 @@
         type="email"
         name="email"
         id="email"
+        required
+        [(ngModel)]="formData.email"
         placeholder="Enter your Email"
       />
     </div>
@@ -27,36 +33,44 @@
         type="password"
         name="password"
         id="password"
+        required
+        [(ngModel)]="formData.password"
         placeholder="Enter your password"
       />
     </div>
 
     <div class="form-group">
-      <label for="confirmpassword">Confirm Password</label>
+      <label for="confirm_password">Confirm Password</label>
       <input
         type="password"
-        name="confirmpassword"
-        id="confirmpassword"
+        name="confirm_password"
+        id="confirm_password"
+        required
+        [(ngModel)]="formData.confirm_password"
         placeholder="Enter confirm password"
       />
     </div>
 
     <div class="form-group">
-      <label for="mobile">Mobile Number</label>
+      <label for="mobile_no">Mobile Number</label>
       <input
         type="number"
-        name="mobile"
-        id="mobile"
+        name="mobile_no"
+        id="mobile_no"
+        required
+        [(ngModel)]="formData.mobile_no"
         placeholder="Enter your mobile number"
       />
     </div>
 
     <div class="form-group">
-      <label for="userName">User Name</label>
+      <label for="username">User Name</label>
       <input
         type="text"
-        name="userName"
-        id="userName"
+        name="username"
+        id="username"
+        required
+        [(ngModel)]="formData.username"
         placeholder="Enter your Username"
       />
     </div>
@@ -67,6 +81,8 @@
         type="text"
         name="address"
         id="address"
+        required
+        [(ngModel)]="formData.address"
         placeholder="Enter your Address"
       />
     </div>
@@ -74,4 +90,3 @@
     <button type="submit">Register</button>
   </form>
 </div>
-
