@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { Users } from '../services/users';
-import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({

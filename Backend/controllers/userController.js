@@ -2,8 +2,6 @@ const db = require("../config/db");
 const { hashPassword } = require('../utlis/hashedpassword');
 
 
-
-
 const getUsers = async (req, res) => {
   try {
     const [data] = await db.query("SELECT * FROM registration");
