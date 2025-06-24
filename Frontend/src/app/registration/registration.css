@@ -64,3 +64,24 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+
+.account-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+}
+
+.account-text .register-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  /* font-weight: 600;
+  margin-left: 5px; */
+}
+
+.account-text .register-link:hover {
+  text-decoration: underline;
+}
+

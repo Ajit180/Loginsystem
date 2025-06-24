@@ -72,8 +72,9 @@ button[type="submit"]:hover {
 .account-text .register-link {
   color: #007bff;
   text-decoration: none;
-  font-weight: 600;
-  margin-left: 5px;
+  cursor: pointer;
+  /* font-weight: 600;
+  margin-left: 5px; */
 }
 
 .account-text .register-link:hover {

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Users } from '../services/users';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -20,10 +20,11 @@ export class Login {
   onSubmit(form:any) {
     this.userService.loginUser(this.formData).subscribe({
       next: (res) => {
-        alert('Login successful');
-        localStorage.setItem('token', res.token); // Save JWT token
+        // alert('Login successful');
+        localStorage.setItem('token', res.token);
+        console.log('Token',res.token);
         form.resetForm();
-        // this.router.navigate(['/dashboard']); // navigate after login
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         alert('Login failed');
@@ -31,4 +32,9 @@ export class Login {
       }
     });
   }
+
+  goToRegister() {
+       this.router.navigate(['/regi']);
+   }
+
 }

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { Users } from '../services/users';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   standalone:true,
-  imports: [CommonModule,FormsModule],
+  imports: [FormsModule,RouterModule],
   templateUrl: './registration.html',
   styleUrl: './registration.css'
 })
@@ -21,7 +22,7 @@ export class Registration {
     address: ''
   };
 
-  constructor (private userService:Users){}
+  constructor (private userService:Users,private router: Router){}
 
   onSubmit(form:any){
     this.userService.registerUser(this.formData).subscribe({
@@ -29,6 +30,7 @@ export class Registration {
         alert("User Registred Successfully");
         console.log(res);
         form.resetForm();
+        this.router.navigate(['/login']);
       },
       error:(err)=>{
         alert("User Failed");
@@ -36,4 +38,8 @@ export class Registration {
       }
     })
   }
+
+   goToLogin() {
+       this.router.navigate(['/login']);
+   }
 }
