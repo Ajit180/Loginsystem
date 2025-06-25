@@ -81,3 +81,10 @@ button[type="submit"]:hover {
   text-decoration: underline;
 }
 
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+

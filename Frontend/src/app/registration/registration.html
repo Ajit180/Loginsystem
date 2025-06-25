@@ -1,8 +1,8 @@
 <div class="form-container">
   <h1>User Registration</h1>
-  
-  <!-- Add (ngSubmit) and reference to form -->
-  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm" novalidate>
+    <!-- Name -->
     <div class="form-group">
       <label for="name">Name</label>
       <input
@@ -10,11 +10,17 @@
         name="name"
         id="name"
         required
+        minlength="3"
         [(ngModel)]="formData.name"
+        #name="ngModel"
         placeholder="Enter your full name"
       />
+      <div *ngIf="name.invalid && name.touched" class="error">
+        Name is required (min 3 characters).
+      </div>
     </div>
 
+    <!-- Email -->
     <div class="form-group">
       <label for="email">Email</label>
       <input
@@ -22,23 +28,50 @@
         name="email"
         id="email"
         required
+        email
         [(ngModel)]="formData.email"
+        #email="ngModel"
         placeholder="Enter your Email"
       />
+      <div *ngIf="email.invalid && email.touched" class="error">
+        Valid Email is required.
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        required
-        [(ngModel)]="formData.password"
-        placeholder="Enter your password"
-      />
-    </div>
+    <!-- Password -->
+   <div class="form-group">
+  <label for="password">Password</label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    required
+    minlength="6"
+    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$"
+    [(ngModel)]="formData.password"
+    #password="ngModel"
+    placeholder="Enter your password"
+    class="form-control"
+  />
 
+  <!-- Error Messages -->
+  <div *ngIf="password.touched && password.errors" class="error">
+    <div *ngIf="password.errors['required']">Password is required.</div>
+    <div *ngIf="password.errors['minlength']">Min 6 characters required.</div>
+    <div *ngIf="password.errors['pattern']">
+      Password must include:
+      <ul>
+        <li>1 uppercase letter</li>
+        <li>1 lowercase letter</li>
+        <li>1 number</li>
+        <li>1 special character %#$#$</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Confirm Password -->
     <div class="form-group">
       <label for="confirm_password">Confirm Password</label>
       <input
@@ -47,22 +80,42 @@
         id="confirm_password"
         required
         [(ngModel)]="formData.confirm_password"
+        #confirm_password="ngModel"
         placeholder="Enter confirm password"
       />
+      <div
+        *ngIf="
+          confirm_password.touched &&
+          formData.password !== formData.confirm_password
+        "
+        class="error"
+      >
+        Passwords do not match.
+      </div>
     </div>
 
+   <!-- Mobile Number -->
     <div class="form-group">
       <label for="mobile_no">Mobile Number</label>
       <input
-        type="number"
-        name="mobile_no"
-        id="mobile_no"
-        required
-        [(ngModel)]="formData.mobile_no"
-        placeholder="Enter your mobile number"
-      />
-    </div>
+       type="text"
+       name="mobile_no"
+      id="mobile_no"
+    required
+    pattern="^[6-9]\d{9}$"
+    [(ngModel)]="formData.mobile_no"
+    #mobile_no="ngModel"
+    placeholder="Enter your mobile number"
+  />
+   <div *ngIf="mobile_no.errors?.['required'] && mobile_no.touched" class="error">
+    Mobile number is required.
+  </div>
+  <div *ngIf="mobile_no.errors?.['pattern'] && mobile_no.touched" class="error">
+    Enter valid 10-digit mobile number starting with 6–9.
+  </div>
+      </div>
 
+    <!-- Username -->
     <div class="form-group">
       <label for="username">User Name</label>
       <input
@@ -70,11 +123,17 @@
         name="username"
         id="username"
         required
+        minlength="4"
         [(ngModel)]="formData.username"
+        #username="ngModel"
         placeholder="Enter your Username"
       />
+      <div *ngIf="username.invalid && username.touched" class="error">
+        Username is required (min 4 chars).
+      </div>
     </div>
 
+    <!-- Address -->
     <div class="form-group">
       <label for="address">Address</label>
       <input
@@ -82,15 +141,21 @@
         name="address"
         id="address"
         required
+        minlength="4"
         [(ngModel)]="formData.address"
+        #address="ngModel"
         placeholder="Enter your Address"
       />
+      <div *ngIf="address.invalid && address.touched" class="error">
+        Address is required.
+      </div>
     </div>
 
-    <button type="submit">Register</button>
+    <button type="submit" [disabled]="form.invalid">Register</button>
   </form>
-   <p class="account-text">
-     Already have an account?
-   <a (click)="goToLogin()" class="register-link">Login</a>
+
+  <p class="account-text">
+    Already have an account?
+    <a (click)="goToLogin()" class="register-link">Login</a>
   </p>
 </div>

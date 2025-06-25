@@ -1,20 +1,31 @@
 <div class="login-container">
   <h1>Login</h1>
 
-  <!-- Add (ngSubmit) and #form reference -->
+  <!-- Login Form with ngForm reference -->
   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <!-- Email Field -->
     <div class="form-data">
       <label for="email">Email</label>
-      <input
-        type="email"
+     <input
+      type="email"
         name="email"
-        id="email"
+       id="email"
         required
-        [(ngModel)]="formData.email"
-        placeholder="Enter your Email"
-      />
+       [(ngModel)]="formData.email"
+       placeholder="Enter your Email"
+        #email="ngModel"
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        />
+       <div class="error" *ngIf="email.errors?.['required'] && email.touched">
+        Email is required.
+        </div>
+        <div class="error" *ngIf="email.errors?.['pattern'] && email.touched">
+          Please enter a valid email address.
+        </div>
+
     </div>
 
+    <!-- Password Field -->
     <div class="form-data">
       <label for="password">Password</label>
       <input
@@ -22,16 +33,26 @@
         name="password"
         id="password"
         required
+        minlength="6"
         [(ngModel)]="formData.password"
         placeholder="Enter your password"
+        #password="ngModel"
       />
+      <div class="error" *ngIf="password.errors?.['required'] && password.touched">
+        Password is required.
+      </div>
+      <div class="error" *ngIf="password.errors?.['minlength'] && password.touched">
+        Password must be at least 6 characters.
+      </div>
     </div>
 
-    <button type="submit">Login</button>
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="form.invalid">Login</button>
   </form>
 
+  <!-- Navigation -->
   <p class="account-text">
     Don't have an account?
-   <a (click)="goToRegister()" class="register-link">Register</a>
+    <a (click)="goToRegister()" class="register-link">Register</a>
   </p>
 </div>

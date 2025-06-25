@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Users } from '../services/users';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-registration',
-  standalone:true,
-  imports: [FormsModule,RouterModule],
+  standalone: true,
+  imports: [FormsModule, RouterModule,CommonModule],
   templateUrl: './registration.html',
   styleUrl: './registration.css'
 })
 export class Registration {
-      formData = {
+  formData = {
     name: '',
     email: '',
     password: '',
@@ -21,24 +23,39 @@ export class Registration {
     address: ''
   };
 
-  constructor (private userService:Users,private router: Router){}
+  constructor(private userService: Users, private router: Router) {}
 
-  onSubmit(form:any){
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      alert('Please fill all required fields correctly');
+      return;
+    }
+
+    if (this.formData.password !== this.formData.confirm_password) {
+      alert('Passwords do not match!');
+      return;
+    }
+
     this.userService.registerUser(this.formData).subscribe({
-      next:(res)=>{
-        alert("User Registred Successfully");
+      next: (res) => {
+        alert('User Registered Successfully');
         console.log(res);
-        form.resetForm();
+        form.resetForm(); // ✅ clear form
         this.router.navigate(['/login']);
       },
-      error:(err)=>{
-        alert("User Failed");
+      error: (err) => {
+        alert('Registration Failed');
         console.log(err);
       }
-    })
+    });
   }
 
-   goToLogin() {
-       this.router.navigate(['/login']);
-   }
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+  showPassword = false; 
+
+   togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 }
